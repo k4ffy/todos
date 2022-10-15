@@ -1,0 +1,400 @@
+*:focus {
+	outline-color: #672EE3;
+}
+
+.todo {
+	padding: 0px 0px 100px 0px;
+
+	&__container {
+		max-width: 650px;
+		margin: 0 auto;
+	}
+
+	&__form {
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.2);
+	}
+
+	&__content {
+		max-width: 600px;
+		margin: -10px auto 0;
+		background-color: #fff;
+		box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.2);
+		border-bottom-left-radius: 10px;
+		border-bottom-right-radius: 10px;
+	}
+
+	&__tabs {
+	}
+
+	&__list {
+	}
+
+	&__actions {
+		display: flex;
+		justify-content: center;
+		column-gap: 10px;
+		margin-top: 50px;
+	}
+}
+
+.todo-form {
+	padding: 25px 25px 15px 25px;
+	background-color: #fff;
+	border-radius: 10px;
+
+	> *:not(:last-child) {
+		margin: 0px 0px 15px 0px;
+	}
+
+	&__input-wrapper {
+		display: flex;
+		flex-direction: column;
+		row-gap: 5px;
+		width: 100%;
+		border-bottom: 1px solid #E3E3F2;
+	}
+
+	&__input-title,
+	&__input-descr {
+		padding: 0;
+		outline: none;
+
+		&::placeholder {
+			color: #BFBFCC;
+		}
+	}
+
+	&__input-title {
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 140%;
+		letter-spacing: 0.01em;
+		border: none;
+	}
+
+	&__input-descr {
+		height: 80px;
+		font-weight: 400;
+		font-size: 20px;
+		line-height: 110%;
+		letter-spacing: -0.02em;
+		border: none;
+		resize: none;
+	}
+
+	&__footer {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&__actions {
+		display: flex;
+		column-gap: 15px;
+	}
+}
+
+.todo-tabs {
+	padding: 20px 0px 0px 0px;
+	border-bottom: 1px solid #E3E3F2;
+
+	&__wrapper {
+		display: flex;
+		column-gap: 20px;
+		padding: 0 25px;
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+		padding: 10px 5px;
+		font-weight: 700;
+		font-size: 17px;
+		line-height: 140%;
+		letter-spacing: 0.06em;
+		color: #7B7D9C;
+		transition: all 0.3s ease 0s;
+		
+		&_active {
+			color: #000;
+			box-shadow: inset 0px -2px 0px 0px #672EE3;
+		}
+	}
+
+	&__counter {
+		display: block;
+		margin-left: 10px;
+		padding: 2px 10px;
+		font-weight: 700;
+		font-size: 14px;
+		line-height: 120%;
+		color: #7D81A0;
+		background: #F6F5FA;
+		border-radius: 10px;
+	}
+}
+
+.todo-list {
+	padding: 0 25px;
+	list-style: none;
+
+	&__item {
+	}
+
+	&__empty {
+		display: block;
+		padding: 20px 0;
+		font-size: 32px;
+		font-weight: 700;
+		line-height: 140%;
+		text-align: center;
+	}
+}
+
+.todo-item {
+	position: relative;
+	display: flex;
+	align-items: center;
+	min-height: 70px;
+	padding: 20px 0;
+	list-style: none;
+
+	&:not(:last-child) {
+		border-bottom: 1px solid #E7E9EB;
+	}
+
+	&_completed &__title,
+	&_completed &__descr {
+		color: #d9d9d9;
+		text-decoration: line-through;
+	}
+
+	&_edit {
+		background-color: #ececec;
+		border-radius: 5px;
+	}
+
+	&__checkbox {
+		position: absolute;
+		top: 23px;
+		// align-self: flex-start;
+		left: 0;
+		width: 20px;
+		height: 20px;
+
+		input[type="checkbox"] {
+			position: absolute;
+			z-index: 1;
+			opacity: 0;
+			display: block;
+			width: 20px;
+			height: 20px;
+			cursor: pointer;
+
+			&:checked + .checkbox {
+				background: url('../img/icons/checked.svg') center center / cover no-repeat;
+			}
+
+			&:focus + .checkbox {
+				outline: 2px solid #672EE3;
+				outline-offset: 2px;
+			}
+
+			&:focus:not(:focus-visible) + .checkbox {
+				outline: none;
+			}
+		}
+
+		.checkbox {
+			position: absolute;
+			width: 20px;
+			height: 20px;
+			background: url('../img/icons/default.svg') center center / cover no-repeat;
+			border-radius: 3px;
+			transition: background 0.15s ease 0s;
+		}
+	}
+
+	&__body {
+		position: relative;
+		width: 100%;
+		padding: 0px 0px 0px 40px;
+		overflow: hidden;
+		align-self: start;
+
+		input,
+		textarea {
+			padding: 0 5px;
+			margin-left: -5px;
+			line-height: 120%;
+
+		}
+
+
+		input {
+			width: 100%;
+			font-size: 20px;
+			font-weight: 700;
+		}
+
+		textarea {
+			width: 100%;
+			font-size: 18px;
+
+			resize: none;
+		}
+	}
+
+	&__title {
+		position: relative;
+		display: block;
+		font-weight: 700;
+		font-size: 20px;
+		line-height: 140%;
+		letter-spacing: 0.01em;
+		color: #000000;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		word-break: break-word;
+	}
+
+	&__descr {
+		margin: 5px 0px 0px 0px;
+		font-size: 18px;
+		color: #7B7D9C;
+		word-break: break-word;
+		line-height: 140%
+	}
+
+	&__actions {
+		display: flex;
+		column-gap: 5px;
+		align-self: flex-start;
+	}
+
+	&__remove,
+	&__edit {
+		width: 24px;
+		height: 24px;
+		cursor: pointer;
+		opacity: 0;
+		border: none;
+		transition: opacity 0.3s ease 0s;
+
+		&:focus {
+			opacity: 1;
+		}
+	}
+
+	&__remove {
+		background: url('../img/icons/trash-can.png') center center / 18px 18px no-repeat;
+	}
+
+	&__edit {
+		background: url('../img/icons/pencil.png') center center / 18px 18px no-repeat;
+	}
+
+	&__body-actions {
+		display: none;
+		margin-top: 15px;
+		margin-left: -2px;
+		column-gap: 10px;
+	}
+
+
+	&:hover &__actions, 
+	&:hover &__remove,
+	&:hover &__edit {
+		opacity: 1;
+	}
+
+	[data-type="updated-title"],
+	[data-type="updated-descr"] {
+		display: none;
+		padding: 0 5px;
+		margin-left: -7px;
+		letter-spacing: 0.01em;
+		line-height: 140%;
+		box-sizing: border-box;
+		border-radius: 5px;
+		border: 2px solid #672EE3;
+		transition: all 0.3s ease 0s;
+
+		&::placeholder {
+			color:rgba(0, 0, 0, 0.2);
+		}
+	}
+
+	[data-type="updated-descr"] {
+		margin-top: 4px;
+		height: 70px;
+	}
+
+
+	&_editing {
+		[data-type="updated-title"],
+		[data-type="updated-descr"] {
+			display: block;
+		}
+	}
+
+	&_editing &__body-actions {
+		display: inline-flex;
+	}
+
+	&_editing &__title,
+	&_editing &__descr,
+	&_editing &__actions,
+	&_editing &__checkbox {
+		display: none;
+	}
+
+}
+
+
+
+@media screen and (max-width: 585px) {
+	[class*="__container"] {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.todo-form {
+		padding: 25px 15px 15px 15px;
+	}
+
+	.todo-list {
+		padding: 0 15px;
+	}
+
+	.todo-item {
+
+		&__body {
+			padding-left: 30px;
+		}
+
+		&__actions, 
+		&__remove,
+		&__edit {
+			opacity: 1;
+		}
+
+		&__actions {
+			flex-direction: column;
+			row-gap: 10px;
+		}
+	}
+
+	.todo-tabs {
+		&__wrapper {
+			padding: 0 15px;
+			column-gap: 5px;
+		}
+
+		&__item {
+			font-size: 14px;
+		}
+	}
+}

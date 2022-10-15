@@ -1,0 +1,46 @@
+@use "sass:math";
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+@import 'base/reset';
+@import 'base/variables';
+@import 'base/mixins';
+
+
+
+$maxWidthContainer: 1170;
+
+body {
+	font-family: sans-serif;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 140%;
+	color: #7B7D9C;
+	background-color: #efeef5;
+}
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	overflow: hidden;
+
+	> main {
+		flex: 1 1 auto;
+	}
+}
+
+[class*="__container"] {
+	max-width: $maxWidthContainer + px;
+	margin: 0 auto;
+	padding: 0 15px;
+	box-sizing: content-box;
+}
+
+
+
+@import 'blocks/button';
+@import 'blocks/title';
+@import 'blocks/header';
+@import 'blocks/todo';
+@import 'blocks/footer';
