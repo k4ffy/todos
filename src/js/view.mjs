@@ -6,8 +6,8 @@ export default class View {
 	descrInput = $('.todo-form__input-descr');
 	todoList = $('.todo-list');
 	tabs = $('.todo-tabs');
-	removeCompletedBtn = $('[data-type="remove-completed"]');
-	
+	completedRemoveBtn = $('[data-type="remove-completed"]');
+
 
 	constructor(template) {
 		this.template = template;
@@ -91,11 +91,19 @@ export default class View {
 		$('.todo-item__body-actions', item).remove();
 	}
 
-	removeCompletedTodos(todos) {
-		todos.forEach(todo => {
+	removeCompletedTodos(completedTodos) {
+		completedTodos.forEach(todo => {
 			const item = $(`[data-id="${todo.id}"]`);
 			item.remove();
 		});
+	}
+
+	showCompletedBtn(completedTodos) {
+		if (completedTodos.length === 0) {
+			this.completedRemoveBtn.classList.add('display-none');
+		} else if (completedTodos.length > 0) {
+			this.completedRemoveBtn.classList.remove('display-none');
+		}
 	}
 
 
@@ -115,6 +123,9 @@ export default class View {
 		const all = todos.length;
 		const active = todos.filter(todo => !todo.completed).length;
 		const completed = todos.filter(todo => todo.completed).length;
+		const completedTodos = todos.filter(todo => todo.completed);
+
+		this.showCompletedBtn(completedTodos);
 
 		$('[data-name="tab-all-counter"]').innerText = all;
 		$('[data-name="tab-active-counter"]').innerText = active;
@@ -200,7 +211,7 @@ export default class View {
 	}
 
 	bindRemoveCompletedTodos(handler) {
-		this.removeCompletedBtn.addEventListener('click', (event) => {
+		this.completedRemoveBtn.addEventListener('click', (event) => {
 			handler();
 		});
 	}

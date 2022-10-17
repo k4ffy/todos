@@ -13,6 +13,7 @@ export default class Controller {
 		this.view.bindRemoveCompletedTodos(this.handleRemoveCompletedTodos);
 
 		this.view.updateTabsCounter(this.model.todos);
+		this.view.showCompletedBtn(this.model.todos.filter(todo => todo.completed));
 	}
 
 
