@@ -48,20 +48,19 @@ export default class View {
 		
 		if (target.className === 'todo-item__edit') {
 			const item = target.closest('.todo-item');
-			const id = +item.dataset.id;
 
 			const title = $('.todo-item__title', item);
 			const descr = $('.todo-item__descr', item);
 
 			const titleInput = document.createElement('input');
 			titleInput.dataset.type = 'updated-title';
-			titleInput.placeholder = 'New task title';
+			titleInput.placeholder = 'Task title';
 			titleInput.value = title.innerText;
 			title.after(titleInput);
 
 			const descrInput = document.createElement('textarea');
 			descrInput.dataset.type = 'updated-descr';
-			descrInput.placeholder = 'New task descr';
+			descrInput.placeholder = 'Task description';
 			descrInput.value = descr.innerText;
 			descr.after(descrInput);
 
@@ -100,9 +99,9 @@ export default class View {
 
 	showCompletedBtn(completedTodos) {
 		if (completedTodos.length === 0) {
-			this.completedRemoveBtn.classList.add('display-none');
+			this.completedRemoveBtn.classList.add('hidden');
 		} else if (completedTodos.length > 0) {
-			this.completedRemoveBtn.classList.remove('display-none');
+			this.completedRemoveBtn.classList.remove('hidden');
 		}
 	}
 
@@ -211,7 +210,7 @@ export default class View {
 	}
 
 	bindRemoveCompletedTodos(handler) {
-		this.completedRemoveBtn.addEventListener('click', (event) => {
+		this.completedRemoveBtn.addEventListener('click', () => {
 			handler();
 		});
 	}

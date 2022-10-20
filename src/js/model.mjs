@@ -4,16 +4,9 @@ export default class Model {
 	todos = JSON.parse(localStorage.getItem('todos')) || [];
 
 
-	constructor() {
-		console.log(this.todos);
-	}
-
-
 	_commit() {
+		// сохранение текущего состояния списка задач в localStorage 	
 		localStorage.setItem('todos', JSON.stringify(this.todos));
-
-		// debug
-		console.log(this.todos);
 	}
 
 

@@ -13,6 +13,8 @@ export default class Controller {
 		this.view.bindRemoveCompletedTodos(this.handleRemoveCompletedTodos);
 
 		this.view.updateTabsCounter(this.model.todos);
+		// проверка на наличие выполненных задач
+		// если найдены выполннеые задачи, показать кнопку, и наоборот	
 		this.view.showCompletedBtn(this.model.todos.filter(todo => todo.completed));
 	}
 
@@ -41,6 +43,7 @@ export default class Controller {
 		this.updateEmptyUI(this._currentRoute);
 	}
 
+	// проверка на наличие задач в выбранном view
 	updateEmptyUI() {
 		const todos = this.model.todos;
 		let status = '';
