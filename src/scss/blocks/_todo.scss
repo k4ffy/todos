@@ -26,11 +26,9 @@
 		border-bottom-right-radius: 10px;
 	}
 
-	&__tabs {
-	}
+	&__tabs {}
 
-	&__list {
-	}
+	&__list {}
 
 	&__actions {
 		display: flex;
@@ -45,7 +43,7 @@
 	background-color: #fff;
 	border-radius: 10px;
 
-	> *:not(:last-child) {
+	>*:not(:last-child) {
 		margin: 0px 0px 15px 0px;
 	}
 
@@ -116,7 +114,7 @@
 		letter-spacing: 0.06em;
 		color: #7B7D9C;
 		transition: all 0.3s ease 0s;
-		
+
 		&_active {
 			color: #000;
 			box-shadow: inset 0px -2px 0px 0px #672EE3;
@@ -140,8 +138,7 @@
 	padding: 0 25px;
 	list-style: none;
 
-	&__item {
-	}
+	&__item {}
 
 	&__empty {
 		display: block;
@@ -179,7 +176,6 @@
 	&__checkbox {
 		position: absolute;
 		top: 23px;
-		// align-self: flex-start;
 		left: 0;
 		width: 20px;
 		height: 20px;
@@ -193,16 +189,16 @@
 			height: 20px;
 			cursor: pointer;
 
-			&:checked + .checkbox {
+			&:checked+.checkbox {
 				background: url('../img/icons/checked.svg') center center / cover no-repeat;
 			}
 
-			&:focus + .checkbox {
+			&:focus+.checkbox {
 				outline: 2px solid #672EE3;
 				outline-offset: 2px;
 			}
 
-			&:focus:not(:focus-visible) + .checkbox {
+			&:focus:not(:focus-visible)+.checkbox {
 				outline: none;
 			}
 		}
@@ -304,7 +300,7 @@
 	}
 
 
-	&:hover &__actions, 
+	&:hover &__actions,
 	&:hover &__remove,
 	&:hover &__edit {
 		opacity: 1;
@@ -323,7 +319,7 @@
 		transition: all 0.3s ease 0s;
 
 		&::placeholder {
-			color:rgba(0, 0, 0, 0.2);
+			color: rgba(0, 0, 0, 0.2);
 		}
 	}
 
@@ -334,6 +330,7 @@
 
 
 	&_editing {
+
 		[data-type="updated-title"],
 		[data-type="updated-descr"] {
 			display: block;
@@ -361,8 +358,15 @@
 		padding-right: 0;
 	}
 
+	.todo {
+		&__content {
+			margin: -10px 10px 0;
+		}
+	}
+
 	.todo-form {
 		padding: 25px 15px 15px 15px;
+		border-radius: unset;
 	}
 
 	.todo-list {
@@ -375,7 +379,7 @@
 			padding-left: 30px;
 		}
 
-		&__actions, 
+		&__actions,
 		&__remove,
 		&__edit {
 			opacity: 1;
