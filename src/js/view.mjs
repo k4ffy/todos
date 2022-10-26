@@ -12,7 +12,8 @@ export default class View {
 	constructor(template) {
 		this.template = template;
 
-		this.todoList.addEventListener('click', (event) => this.editTodo(event));
+		this.todoList.addEventListener('click', (event) => this.handleClickEditTodo(event));
+		this.todoList.addEventListener('dblclick', (event) => this.handleDblClickEditTodo(event));
 	}
 
 
@@ -43,38 +44,55 @@ export default class View {
 		todos.forEach(todo => this.renderTodo(todo));
 	}
 
-	editTodo(event) {
+
+	handleClickEditTodo(event) {
 		const target = event.target;
-		
+		const item = target.closest('.todo-item');
+
 		if (target.className === 'todo-item__edit') {
-			const item = target.closest('.todo-item');
-
-			const title = $('.todo-item__title', item);
-			const descr = $('.todo-item__descr', item);
-
-			const titleInput = document.createElement('input');
-			titleInput.dataset.type = 'updated-title';
-			titleInput.placeholder = 'Task title';
-			titleInput.value = title.innerText;
-			title.after(titleInput);
-
-			const descrInput = document.createElement('textarea');
-			descrInput.dataset.type = 'updated-descr';
-			descrInput.placeholder = 'Task description';
-			descrInput.value = descr.innerText;
-			descr.after(descrInput);
-
-			item.classList.add('todo-item_editing');
-
-			const editActions = `
-			<div class="todo-item__body-actions">
-				<button data-type="todo-edit-save" class="button">Save</button>
-				<button data-type="todo-edit-cancel" class="button button_transparent">Cancel</button>
-			</div>`;
-
-			$('.todo-item__body', item).insertAdjacentHTML('beforeend', editActions);
+			this.editTodo(item);
 		}
 	}
+
+	handleDblClickEditTodo(event) {
+		const target = event.target;
+		const item = target.closest('.todo-item');
+
+		if (target.className === 'todo-item__title' || target.className === 'todo-item__descr') {
+			if (!item.classList.contains('todo-item_editing')) {
+				this.editTodo(item)
+			}
+		}
+	}
+
+
+	editTodo(item) {
+		const title = $('.todo-item__title', item);
+		const descr = $('.todo-item__descr', item);
+
+		const titleInput = document.createElement('input');
+		titleInput.dataset.type = 'updated-title';
+		titleInput.placeholder = 'Task title';
+		titleInput.value = title.innerText;
+		title.after(titleInput);
+
+		const descrInput = document.createElement('textarea');
+		descrInput.dataset.type = 'updated-descr';
+		descrInput.placeholder = 'Task description';
+		descrInput.value = descr.innerText;
+		descr.after(descrInput);
+
+		item.classList.add('todo-item_editing');
+
+		const editActions = `
+		<div class="todo-item__body-actions">
+			<button data-type="todo-edit-save" class="button">Save</button>
+			<button data-type="todo-edit-cancel" class="button button_transparent">Cancel</button>
+		</div>`;
+
+		$('.todo-item__body', item).insertAdjacentHTML('beforeend', editActions);
+	}
+
 
 	editTodoDone(id, title, descr) {
 		const item = $(`[data-id="${id}"]`);
@@ -86,7 +104,7 @@ export default class View {
 
 		$('.todo-item__title', item).innerText = title;
 		$('.todo-item__descr', item).innerText = descr;
-		
+
 		$('.todo-item__body-actions', item).remove();
 	}
 
@@ -108,7 +126,7 @@ export default class View {
 
 	showEmptyUI(status) {
 		if (status === 'empty') {
-			const emptyUI = `<ul class="todo-list__empty">No tasks found <br><span>(×_×)</span></ul>`
+			const emptyUI = `<ul class="todo-list__empty">No tasks found <br><span>(×_×)</span></ul>`;
 
 			this.todoList.innerHTML = emptyUI;
 		} else {
@@ -180,7 +198,7 @@ export default class View {
 	bindEditTodoSave(handler) {
 		this.todoList.addEventListener('click', (event) => {
 			const target = event.target;
-			
+
 			if (target.dataset.type === 'todo-edit-save') {
 				const item = target.closest('.todo-item');
 				const id = +item.dataset.id;
@@ -196,7 +214,7 @@ export default class View {
 	bindEditTodoCancel(handler) {
 		this.todoList.addEventListener('click', (event) => {
 			const target = event.target;
-			
+
 			if (target.dataset.type === 'todo-edit-cancel') {
 				const item = target.closest('.todo-item');
 				const id = +item.dataset.id;
