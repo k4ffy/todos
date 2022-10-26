@@ -58,7 +58,7 @@ export default class View {
 		const target = event.target;
 		const item = target.closest('.todo-item');
 
-		if (target.className === 'todo-item__title' || target.className === 'todo-item__descr') {
+		if (item && target.type !== 'checkbox') {
 			if (!item.classList.contains('todo-item_editing')) {
 				this.editTodo(item)
 			}
