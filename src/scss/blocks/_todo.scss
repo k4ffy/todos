@@ -351,30 +351,8 @@
 }
 
 
-
-@media screen and (max-width: 585px) {
-	[class*="__container"] {
-		padding-left: 0;
-		padding-right: 0;
-	}
-
-	.todo {
-		&__content {
-			margin: -10px 10px 0;
-		}
-	}
-
-	.todo-form {
-		padding: 25px 15px 15px 15px;
-		border-radius: unset;
-	}
-
-	.todo-list {
-		padding: 0 15px;
-	}
-
+@media screen and (max-width: 992px) {
 	.todo-item {
-
 		&__body {
 			padding-left: 30px;
 		}
@@ -400,5 +378,27 @@
 		&__item {
 			font-size: 14px;
 		}
+	}
+}
+
+
+@media screen and (max-width: 585px) {
+	[class*="__container"] {
+		padding-left: 0;
+		padding-right: 0;
+	}
+
+	.todo {
+		&__content {
+			margin: -10px 10px 0;
+		}
+	}
+
+	.todo-form {
+		border-radius: unset;
+	}
+
+	.todo-list {
+		padding: 0 15px;
 	}
 }
