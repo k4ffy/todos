@@ -1,0 +1,10 @@
+{
+	"server": {
+		"host": "",
+		"user": "",
+		"password": "",
+		"parallel": 5
+	},
+	"ftp": "",
+	"main": "app.js"
+}

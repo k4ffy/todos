@@ -3,7 +3,7 @@
 /build
 /dist
 
-/config
+# /config
 
 .DS_Store
 .env.local
