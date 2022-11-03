@@ -22,13 +22,8 @@
 		margin: -10px auto 0;
 		background-color: #fff;
 		box-shadow: 0px 7px 10px rgba(0, 0, 0, 0.2);
-		border-bottom-left-radius: 10px;
-		border-bottom-right-radius: 10px;
+		border-radius: 0 0 10px 10px;
 	}
-
-	&__tabs {}
-
-	&__list {}
 
 	&__actions {
 		display: flex;
@@ -115,7 +110,7 @@
 		color: #7B7D9C;
 		transition: all 0.3s ease 0s;
 
-		&_active {
+		&.active {
 			color: #000;
 			box-shadow: inset 0px -2px 0px 0px #672EE3;
 		}
@@ -137,8 +132,6 @@
 .todo-list {
 	padding: 0 25px;
 	list-style: none;
-
-	&__item {}
 
 	&__empty {
 		display: block;
@@ -162,8 +155,8 @@
 		border-bottom: 1px solid #E7E9EB;
 	}
 
-	&_completed &__title,
-	&_completed &__descr {
+	&.completed &__title,
+	&.completed &__descr {
 		color: #d9d9d9;
 		text-decoration: line-through;
 	}
@@ -329,7 +322,7 @@
 	}
 
 
-	&_editing {
+	&.editing {
 
 		[data-type="updated-title"],
 		[data-type="updated-descr"] {
@@ -337,14 +330,14 @@
 		}
 	}
 
-	&_editing &__body-actions {
+	&.editing &__body-actions {
 		display: inline-flex;
 	}
 
-	&_editing &__title,
-	&_editing &__descr,
-	&_editing &__actions,
-	&_editing &__checkbox {
+	&.editing &__title,
+	&.editing &__descr,
+	&.editing &__actions,
+	&.editing &__checkbox {
 		display: none;
 	}
 

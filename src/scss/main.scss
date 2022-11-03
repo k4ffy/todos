@@ -25,7 +25,7 @@ body {
 	min-height: 100%;
 	overflow: hidden;
 
-	> main {
+	>main {
 		flex: 1 1 auto;
 	}
 }
@@ -46,4 +46,3 @@ body {
 @import 'blocks/title';
 @import 'blocks/header';
 @import 'blocks/todo';
-@import 'blocks/footer';

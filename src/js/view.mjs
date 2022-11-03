@@ -36,7 +36,7 @@ export default class View {
 			item.remove();
 		}
 
-		item.classList.toggle('todo-item_completed');
+		item.classList.toggle('completed');
 	}
 
 	showFilteredTodos(todos) {
@@ -59,7 +59,7 @@ export default class View {
 		const item = target.closest('.todo-item');
 
 		if (item && target.type !== 'checkbox') {
-			if (!item.classList.contains('todo-item_editing')) {
+			if (!item.classList.contains('editing')) {
 				this.editTodo(item)
 			}
 		}
@@ -82,7 +82,7 @@ export default class View {
 		descrInput.value = descr.innerText;
 		descr.after(descrInput);
 
-		item.classList.add('todo-item_editing');
+		item.classList.add('editing');
 
 		const editActions = `
 		<div class="todo-item__body-actions">
@@ -97,7 +97,7 @@ export default class View {
 	editTodoDone(id, title, descr) {
 		const item = $(`[data-id="${id}"]`);
 
-		item.classList.remove('todo-item_editing');
+		item.classList.remove('editing');
 
 		$('[data-type="updated-title"]', item).remove();
 		$('[data-type="updated-descr"]', item).remove();
@@ -150,13 +150,13 @@ export default class View {
 	}
 
 	updateActiveTab(route) {
-		$('.todo-tabs__item_active').classList.toggle('todo-tabs__item_active');
+		$('.active', this.tabs).classList.toggle('active');
 
 		if (route === 'active' || route === 'completed') {
-			return $(`[href="#/${route}"]`).classList.add('todo-tabs__item_active');
+			return $(`[href="#/${route}"]`).classList.add('active');
 		}
 
-		$(`[href="#/"]`).classList.add('todo-tabs__item_active');
+		$(`[href="#/"]`).classList.add('active');
 	}
 
 
@@ -179,8 +179,10 @@ export default class View {
 
 	bindRemoveTodo(handler) {
 		this.todoList.addEventListener('click', (event) => {
-			if (event.target.className === 'todo-item__remove') {
-				const id = +event.target.closest('.todo-item').dataset.id;
+			const target = event.target;
+
+			if (target.className === 'todo-item__remove') {
+				const id = +target.closest('.todo-item').dataset.id;
 				handler(id);
 			}
 		});
@@ -188,8 +190,10 @@ export default class View {
 
 	bindToggleTodoCompleted(handler) {
 		this.todoList.addEventListener('click', (event) => {
-			if (event.target.type === 'checkbox') {
-				const id = +event.target.closest('.todo-item').dataset.id;
+			const target = event.target;
+
+			if (target.type === 'checkbox') {
+				const id = +target.closest('.todo-item').dataset.id;
 				handler(id);
 			}
 		});

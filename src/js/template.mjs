@@ -3,7 +3,7 @@ import { escapeCharacters } from "./helpers.mjs";
 export default class Template {
 	createTodo(todo) {
 		return `
-	<li class="todo-list__item todo-item${todo.completed ? ' todo-item_completed' : ''}" data-id="${todo.id}">
+	<li class="todo-list__item todo-item${todo.completed ? ' completed' : ''}" data-id="${todo.id}">
 		<div class="todo-item__checkbox">
 			<input type="checkbox" ${todo.completed ? 'checked' : ''}>
 			<div class="checkbox"></div>
